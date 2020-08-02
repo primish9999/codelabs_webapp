@@ -61,26 +61,3 @@ def load_and_predict(data):
 if __name__ == '__main__':
     application.run(host='0.0.0.0', port=8889)
 
- 
-app = Flask(__name__)
-def do_something(text1,text2):
-   Health = Health.upper()
-   Predict = Predict.upper()
-   combine = Health + Predict 
-   return combine
-@app.route('/')
-def home():
-    return render_template('index.html')
-@app.route('/join', methods=['GET','POST'])
-def my_form_post():
-    Health = request.form['Health']
-    word = request.args.get('text1')
-    Predict = request.form['Predict']
-    combine = do_something(Health,Predict)
-    result = {
-        "output": combine
-    }
-    result = {str(key): value for key, value in result.items()}
-    return jsonify(result=result)
-if __name__ == '__main__':
-    app.run(debug=True)
