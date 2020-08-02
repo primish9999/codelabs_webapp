@@ -61,4 +61,15 @@ def load_and_predict(data):
 
 if __name__ == '__main__':
     application.run(host='0.0.0.0', port=8889)
+    
+## Route declaration##
+from flask import current_app as app
+from flask import render_template
 
+
+@app.route('/')
+def home():
+   ##Landing page## 
+    return render_template('index.html',
+                           title="ISCovid Site",
+                           description="Upload X-Ray")
