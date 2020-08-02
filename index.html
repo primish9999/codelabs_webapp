@@ -2,38 +2,94 @@
 <!doctype html>
 <title> isCovid() </title>
  <link rel="stylesheet" href="{{ url_for('static',     filename='web_app.py') }}">
-<h2>Select a file to upload</h2>
-<body>  
-    <form action = "/success" method = "post" enctype="multipart/form-data">  
-        <input type="file" name="file" />  
-        <input type = "submit" value="Upload">  
-    </form>  
-</body>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+<style>
 
-</body>
->
+body{
+background-color:white;
+font-family: 'Raleway', sans-serif;
+}
+
+h1{
+color: white;
+font-size: 250%;
+text-align:center;
+border: 2px solid white;
+background-color:#A7BEFD;
+}
+
+.left {
+    width: 30%;
+    float: left;
+    text-align: right;
+}
+.right {
+    width: 65%;
+    margin-left: 10px;
+    float:left;
+}
+
+
+</style>
+
+<div>
+<h1><strong>isCovid()</strong></h1>
+</div>
+
 <form method="post" action="/" enctype="multipart/form-data">
     <dl>
 	    
-	<h2>Please provide the following information about the patient:</h2>    
+	<h3>Please provide the following information about the patient:</h3>    
 	<p>
-	<label for="temperature">Temperature:</label>
-	<input type="number" id="temperature" name="temperature"><br><br>
-	
-	<label for="pO2_saturation">pO2 Saturation:</label>
-	<input type="number" id="pO2_saturation" name="pO2_saturation"><br><br>
-	
-	<label for="leukocyte_count">Leukocyte Count:</label>
-	<input type="number" id="leukocyte_count" name="leukocyte_count"><br><br>
-	
-	<label for="neutrophil_count">Neutrophil Count:</label>
-	<input type="number" id="neutrophil_count" name="neutrophil_count"><br><br>
-	
-	<label for="lymphocyte_count">Lymphocyte Count:</label>
-	<input type="number" id="lymphocyte_count" name="lymphocyte_count"><br><br>
-	
-	
-		<input type="file" name="file" autocomplete="off" required>
+    
+<div>
+<div class="left">
+    <label for="temperature">Temperature:</label>
+</div>
+<div class="right">
+    <input type="number" id="temperature" name="temperature">
+</div>
+</div>
+
+<div>
+<div class="left">
+    <label for="pO2_saturation">pO2 Saturation:</label>
+</div>
+<div class="right">
+    <input type="number" id="pO2_saturation" name="pO2_saturation">
+</div>
+</div>
+
+<div>
+<div class="left">
+    <label for="leukocyte_count">Leukocyte Count:</label>	
+</div>
+<div class="right">
+    <input type="number" id="leukocyte_count" name="leukocyte_count">
+</div>
+</div>
+
+<div>
+<div class="left">
+    <label for="neutrophil_count">Neutrophil Count:</label>
+</div>
+<div class="right">
+    <input type="number" id="neutrophil_count" name="neutrophil_count">
+</div>
+</div>
+
+<div>
+<div class="left">
+    	<label for="lymphocyte_count">Lymphocyte Count:</label>
+</div>
+<div class="right">
+    <input type="number" id="lymphocyte_count" name="lymphocyte_count">
+    <br><br>
+</div>
+</div>
+<br><br>
+<h3>Select a file to upload:</h3>
+    <input type="file" name="file" autocomplete="off" required>
 	</p>
     </dl>
     <p>
