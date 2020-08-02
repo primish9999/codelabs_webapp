@@ -2,14 +2,22 @@
 <!doctype html>
 <title> isCovid() </title>
 <h2>Select a file to upload</h2>
-<p>
+<body>  
+    <form action = "/success" method = "post" enctype="multipart/form-data">  
+        <input type="file" name="file" />  
+        <input type = "submit" value="Upload">  
+    </form>  
+</body>
+<div class="container" style="min-height:100% width:80%">
 	{% with messages = get_flashed_messages() %}
 	  {% if messages %}
         Label: {{ messages[0] }}
         Accuracy: {{ messages[1] }}
 	  {% endif %}
 	{% endwith %}
-</p>
+	</div>
+</body>
+>
 <form method="post" action="/" enctype="multipart/form-data">
     <dl>
 	    
@@ -38,3 +46,12 @@
 	<input type="submit" value="Submit">
     </p>
 </form>
+<html>  
+<head>  
+<title>success</title>  
+</head>  
+<body>  
+<p>File uploaded successfully</p>  
+<p>File Name: {{name}}</p>  
+</body>  
+</html>  
