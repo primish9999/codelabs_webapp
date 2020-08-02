@@ -10,6 +10,9 @@ from tensorflow import keras
 import numpy as np
 
 application = Flask(__name__)
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @application.route("/health", methods=["GET"])
 def health():
