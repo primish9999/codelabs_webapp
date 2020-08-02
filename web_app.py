@@ -9,6 +9,7 @@ import joblib
 from flask import Flask, request, render_template,jsonify
 from tensorflow import keras
 import numpy as np
+import app 
 
 application = Flask(__name__)
 @app.route('/')
