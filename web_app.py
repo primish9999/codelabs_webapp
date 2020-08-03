@@ -12,7 +12,7 @@ import numpy as np
 # import app 
 
 application = Flask(__name__)
-@app.route('/')
+@app.route('/', methods=["GET"])
 def index():
     return render_template('index.html')
 
