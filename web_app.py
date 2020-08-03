@@ -50,11 +50,11 @@ def load_and_predict(data):
         trnsfr_learning_model = keras.models.load_model(tf_model_name)
         rf_probs = rf_model.predict_proba([tmp,po2,leu_cnt,neu_cnt,lym_cnt])
         IMG_DIM = (300, 300)
-        img = img_to_array(load_img(img_name, IMG_DIM))
-        img = np.array(img)
-        img = img.astype('float32')
-        img /= 255
-        tf_probs = trnsfr_learning_model.predict_proba([img]) #might need to pre-process it maybe
+        img_name = img_to_array(load_img(img_name, IMG_DIM))
+        img_name = np.array(img_name)
+        img_name = img_name.astype('float32')
+        img_name /= 255
+        tf_probs = trnsfr_learning_model.predict_proba([img_name]) #might need to pre-process it maybe
         rf_probs*tf_probs
         final_probs = [x*y for x,y in zip(rf_probs,tf_probs)]
         label = np.argmax(final_probs)
