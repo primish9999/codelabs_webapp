@@ -44,7 +44,7 @@ def load_and_predict(data):
         neu_cnt = data["neutrophil_count"]
         lym_cnt = data["lymphocyte_count"]
         img_name = data["file_name"]
-        rf_model_name=""   # add filename
+        rf_model_name="finalized_RFmodel.sav"   # add filename
         tf_model_name="chest_xrayimage_covidmodel_4.h5"   #  add filename
         rf_model = joblib.load(rf_model_name)
         trnsfr_learning_model = keras.models.load_model(tf_model_name)
