@@ -1,5 +1,5 @@
 # CodeLabs Project With Anupam Dewan
-By: Priyanka  Mishra, Sam Fernadanes, and Lalla Sankara 
+By: Priyanka  Mishra, Sam Fernandes, and Lalla Sankara 
 
 Project : IsCovid()
 

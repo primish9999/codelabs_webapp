@@ -6,10 +6,15 @@ import base64
 import json
 from werkzeug.utils import secure_filename
 import joblib
+from flask import Flask, request, render_template,jsonify
 from tensorflow import keras
 import numpy as np
+# import app 
 
 application = Flask(__name__)
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @application.route("/health", methods=["GET"])
 def health():
@@ -38,7 +43,7 @@ def load_and_predict(data):
         neu_cnt = data["neutrophil_count"]
         lym_cnt = data["lymphocyte_count"]
         img_name = data["file_name"]
-        rf_model_name=""   # add filename
+        rf_model_name="chest_xrayimage_covidmodel_4.h5"   # add filename
         tf_model_name=""   #  add filename
         rf_model = joblib.load(rf_model_name)
         trnsfr_learning_model = keras.models.load_model(tf_model_name)
@@ -56,3 +61,15 @@ def load_and_predict(data):
 
 if __name__ == '__main__':
     application.run(host='0.0.0.0', port=8889)
+    
+## Route declaration##
+from flask import current_app as app
+from flask import render_template
+
+
+# @app.route('/')
+# def home():
+#    ##Landing page## 
+#     return render_template('index.html',
+#                            title="ISCovid Site",
+#                            description="Upload X-Ray")
