@@ -96,9 +96,21 @@ background-color:#A7BEFD;
 	</p>
 	
 	<h3>Select a file to upload:</h3>
+	<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
     </dl>
     
-    
+        <form action = "http://localhost:5000/upload" method = "POST" 
+         enctype = "multipart/form-data">
         <input type="file" name="file" />  
         <input type = "submit" value="Upload">  
     
