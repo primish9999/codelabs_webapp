@@ -55,7 +55,6 @@ def load_and_predict(data):
         img_name = img_name.astype('float32')
         img_name /= 255
         tf_probs = trnsfr_learning_model.predict_proba([img_name]) #might need to pre-process it maybe
-        rf_probs*tf_probs
         final_probs = [x*y for x,y in zip(rf_probs,tf_probs)]
         label = np.argmax(final_probs)
         if label:
