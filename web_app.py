@@ -21,6 +21,9 @@ def index():
 def health():
     return jsonify({"Message": "Service OK"}), 200
 
+@app.route("/upload")
+def upload_file():
+   return render_template('index.html')
 
 @application.route("/upload", methods=["POST"])
 def upload():
@@ -31,8 +34,9 @@ def upload():
 
 @application.route("/predict", methods=["POST"])
 def predict():
-    data = request.get_json()
-    result,score,status = load_and_predict(data)
+    data_arr = [request.form["temperature"],request.form["pO2_saturation"],request.form["leukocyte_count"],request.form["neutrophil_count"],request.form["lymphocyte_count"]]
+    print(data_arr)
+    result,score,status = load_and_predict(data_arr)
     return jsonify({"Status":status, "Prediction":result,"Confidence":score}),200
 
 def load_and_predict(data):
