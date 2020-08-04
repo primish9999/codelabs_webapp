@@ -36,78 +36,41 @@ background-color:#A7BEFD;
 
 </style>
 
-<div>
-<h1><strong>isCovid()</strong></h1>
-</div>
-
-
-	
-<form method="post" action="/" enctype="multipart/form-data">
-    <dl>
-	    
-	<h3>Please provide the following information about the patient:</h3>    
-	<p>
-    
-<div>
-<div class="left">
-    <label for="temperature">Temperature:</label>
-</div>
-<div class="right">
-    <input type="number" step="any" id="temperature" name="temperature">
-</div>
-</div>
-
-<div>
-<div class="left">
-    <label for="pO2_saturation">pO2 Saturation:</label>
-</div>
-<div class="right">
-    <input type="number" step="any" id="pO2_saturation" name="pO2_saturation">
-</div>
-</div>
-
-<div>
-<div class="left">
-    <label for="leukocyte_count">Leukocyte Count:</label>	
-</div>
-<div class="right">
-    <input type="number" step="any" id="leukocyte_count" name="leukocyte_count">
-</div>
-</div>
-
-<div>
-<div class="left">
-    <label for="neutrophil_count">Neutrophil Count:</label>
-</div>
-<div class="right">
-    <input type="number" step="any" id="neutrophil_count" name="neutrophil_count">
-</div>
-</div>
-
-<div>
-<div class="left">
-    	<label for="lymphocyte_count">Lymphocyte Count:</label>
-</div>
-<div class="right">
-    <input type="number" step="any" id="lymphocyte_count" name="lymphocyte_count">
-    <br><br>
-</div>
-</div>
-<br><br>
-	</p>
-	
-	<h3>Select a file to upload:</h3>
-	
-    </dl>
-        <form method="post" action="/predict" enctype="multipart/form-data">
-    
-		
-        <form action = "http://localhost:5000/upload" method = "POST" 
+<!doctype html>
+<title>Flask & VGG16 Image Classifier</title>
+<h2>Select a file to upload</h2>
+<!-- <p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+        Label: {{ messages[0] }}
+        Accuracy: {{ messages[1] }}
+	  {% endif %}
+	{% endwith %}
+</p> -->
+	<form action = "/upload" method = "POST" 
          enctype = "multipart/form-data">
-        <input type="file" name="file" />  
-        <input type = "submit" value="Upload">  
-    
-    <p>
+         <input type = "file" name = "image" />
+         <input type = "submit"/>
+  </form>
+<form method="post" action="/predict" enctype="multipart/form-data">
+    <dl>
+	<h2>Please provide the following information about the patient:</h2>    
+	<p>
+	<label for="temperature">Temperature:</label>
+	<input type="number" id="temperature" name="temperature"><br><br>
+	<label for="pO2_saturation">pO2 Saturation:</label>
+	<input type="number" id="pO2_saturation" name="pO2_saturation"><br><br>
+	<label for="leukocyte_count">Leukocyte Count:</label>
+	<input type="number" id="leukocyte_count" name="leukocyte_count"><br><br>
+	<label for="neutrophil_count">Neutrophil Count:</label>
+	<input type="number" id="neutrophil_count" name="neutrophil_count"><br><br>
+	<label for="lymphocyte_count">Lymphocyte Count:</label>
+	<input type="number" id="lymphocyte_count" name="lymphocyte_count"><br><br>
+	<label for="File Name">File</label>
+	<input type="text" id="file_name" name="file_name" value={{image}} ><br><br>
+  </form>
+ 	<p>
 	<input type="submit" value="Submit">
-    </p>
+ 	</p>
 </form>
+ 
