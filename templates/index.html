@@ -1,0 +1,119 @@
+<!doctype html>
+<title> isCovid() </title>
+ <link rel="stylesheet" href="{{ url_for('static',     filename='web_app.py') }}">
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+<style>
+
+body{
+background-color:white;
+font-family: 'Raleway', sans-serif;
+}
+
+h1{
+color: white;
+font-size: 250%;
+text-align:center;
+border: 2px solid white;
+background-color:#A7BEFD;
+}
+
+.left {
+    width: 30%;
+    float: left;
+    text-align: right;
+}
+.right {
+    width: 65%;
+    margin-left: 10px;
+    float:left;
+}
+
+
+</style>
+
+<div>
+<h1><strong>isCovid()</strong></h1>
+</div>
+
+<h3> Upload chest Xray </h3>
+<form action = "/upload" method = "POST" 
+         enctype = "multipart/form-data">
+         <input type = "file" name = "image" />
+         <input type = "submit"/>
+</form>
+
+
+<form method="post" action="/predict" enctype="multipart/form-data">
+    <dl>
+	    
+	<h3>Please provide the following information about the patient:</h3>    
+	<p>
+    
+<div>
+<div class="left">
+    <label for="temperature">Temperature:</label>
+</div>
+<div class="right">
+    <input type="number" step="any" id="temperature" name="temperature">
+</div>
+</div>
+
+<div>
+<div class="left">
+    <label for="pO2_saturation">pO2 Saturation:</label>
+</div>
+<div class="right">
+    <input type="number" step="any" id="pO2_saturation" name="pO2_saturation">
+</div>
+</div>
+
+<div>
+<div class="left">
+    <label for="leukocyte_count">Leukocyte Count:</label>	
+</div>
+<div class="right">
+    <input type="number" step="any" id="leukocyte_count" name="leukocyte_count">
+</div>
+</div>
+
+<div>
+<div class="left">
+    <label for="neutrophil_count">Neutrophil Count:</label>
+</div>
+<div class="right">
+    <input type="number" step="any" id="neutrophil_count" name="neutrophil_count">
+</div>
+</div>
+
+<div>
+<div class="left">
+    	<label for="lymphocyte_count">Lymphocyte Count:</label>
+</div>
+<div class="right">
+    <input type="number" step="any" id="lymphocyte_count" name="lymphocyte_count">
+    <br><br>
+</div>
+</div>
+
+<div class="left">
+        <label for="File Name">File</label>
+</div>
+<div class="right">
+    <input type="text" id="file_name" name="file_name" value={{image}} >
+    <br><br>
+</div>
+</div>
+
+<br><br>
+	</p>
+    </dl>
+    
+    
+	<!-- <h3>Select a file to upload:</h3>
+        <input type="file" name="file" />  
+        <input type = "submit" value="Upload">   -->
+    
+    <p>
+	<input type="submit" value="Submit">
+    </p>
+</form>
