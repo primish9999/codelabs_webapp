@@ -64,10 +64,16 @@ def load_and_predict(data):
         print('Image Shape After: ',img.shape)
         final_probs = [x*y for x,y in zip(rf_probs,tf_probs)]
         label = np.argmax(final_probs)
-        if label:
-            return "postive",final_probs[label] ,"Success"
+        if rf_probs[0]==1:
+            if tf_probs[0][0]>0.4:
+                return "postive",tf_probs[0][0] ,"Success"
+            else:
+                return "negative",tf_probs[0][0] ,"Success"
         else:
-            return "negative",final_probs[label] ,"Success"
+            if tf_probs[0][0]<0.6:
+                return "negative",tf_probs[0][0] ,"Success"
+            else:
+                return "postive",tf_probs[0][0] ,"Success"
     except:
         return None,None,"Error"
 if __name__ == '__main__':
