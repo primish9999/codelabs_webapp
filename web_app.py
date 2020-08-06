@@ -42,7 +42,7 @@ def predict():
     return jsonify({"Status":status, "Prediction":result,"Confidence":score}),200
 def load_and_predict(data):
     #This function is not tested
-    try:
+    # try:
         tmp = data["temperature"]
         po2 = data["pO2_saturation"]
         leu_cnt = data["leukocyte_count"]
@@ -55,27 +55,25 @@ def load_and_predict(data):
         trnsfr_learning_model = keras.models.load_model(tf_model_name)
         rf_probs = rf_model.predict(np.array([tmp,po2,leu_cnt,neu_cnt,lym_cnt]).reshape(1,-1))
         IMG_DIM = (300, 300)
-        img = img_to_array(load_img(img_name, target_size = IMG_DIM))
-        img = np.array(img).reshape(None, 300, 300, 3)
-        print('Image Shape: ',img.shape)
+        img = [img_to_array(load_img(img_name, target_size = IMG_DIM)) ]
+        # print('Image Shape: ',img.shape)
+        img = np.array(img)
         img = img.astype('float32')
         img /= 255
         tf_probs = trnsfr_learning_model.predict([img]) #might need to pre-process it maybe
         print('Image Shape After: ',img.shape)
-        final_probs = [x*y for x,y in zip(rf_probs,tf_probs)]
-        label = np.argmax(final_probs)
         if rf_probs[0]==1:
             if tf_probs[0][0]>0.4:
-                return "postive",tf_probs[0][0] ,"Success"
+                return "postive",str(tf_probs[0][0]) ,"Success"
             else:
-                return "negative",tf_probs[0][0] ,"Success"
+                return "negative",str(tf_probs[0][0]),"Success"
         else:
             if tf_probs[0][0]<0.6:
-                return "negative",tf_probs[0][0] ,"Success"
+                return "negative",str(tf_probs[0][0]) ,"Success"
             else:
-                return "postive",tf_probs[0][0] ,"Success"
-    except:
-        return None,None,"Error"
+                return "postive",str(tf_probs[0][0]) ,"Success"
+    # except:
+        # return None,None,"Error"
 if __name__ == '__main__':
     application.run(host='0.0.0.0', port=8889)
 ## Route declaration##
